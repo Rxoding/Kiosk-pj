@@ -1,6 +1,8 @@
 import "./App.css";
 import { Responsive, WidthProvider } from "react-grid-layout";
 import React, { useState } from "react";
+import "react-grid-layout/css/styles.css";
+import "react-resizable/css/styles.css";
 
 //Modal======================================================================
 import Modal from "./commons/components/Modals/Modal";
