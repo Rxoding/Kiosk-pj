@@ -1,0 +1,100 @@
+$white: #fff !default;
+$gray-50: #f6f6f6 !default;
+$gray-100: #babfc7 !default; // $gray-lightest
+$gray-200: #ededed !default; // $gray-lighter
+$gray-300: #dae1e7 !default; // $gray-light
+$gray-400: #636363 !default;
+$gray-500: #adb5bd !default;
+$gray-600: #b8c2cc !default; // $gray
+$gray-700: #4e5154 !default;
+$gray-800: #1e1e1e !default; // $gray-dark
+$gray-900: #2a2e30 !default;
+$black: #22292f !default;
+
+$purple: #7367f0 !default; //$primary
+$green: #28c76f !default; //$success
+$blue: #00cfe8 !default; //$info
+$orange: #ff9f43 !default; //$warning
+$red: #ea5455 !default;
+
+$box-shadow: 0 4px 24px 0 rgba($black, 0.1) !default;
+
+$card-border-radius: 0.428rem !default;
+$card-border-width: 0 !default;
+$card-box-shadow: $box-shadow !default;
+
+.layout > div {
+  // border: 1px solid;
+  margin-bottom: 2rem;
+  box-shadow: 0 4px 24px 0 rgba(34, 41, 47, 0.1);
+  border-radius: $card-border-radius;
+
+  // border-top: 1px solid $gray-300;
+  // background-color: transparent;
+
+  cursor: grab;
+  .gu-unselectable & {
+    cursor: grabbing;
+  }
+}
+
+.main {
+  /* position: relative; */
+  text-align: center;
+  background-color: black;
+  background-clip: border-box;
+  border: var(--bs-card-border-width) solid var(--bs-card-border-color);
+  border-radius: $card-border-radius;
+  // transition: all 0.02s ease-in-out, background 0s, color 0s, border-color 0s;
+}
+
+.main > iframe {
+  /* position: absolute; */
+  /* top: 0; */
+  /* left: 0; */
+  width: 95%;
+  height: 95%;
+}
+
+.b_img {
+  /* top: 0;
+    left: 0; */
+  /* position: absolute; */
+  width: 90%;
+  height: 100%;
+  /* object-fit: n; */
+  object-fit: contain;
+}
+
+.ad1 {
+  // background-color: $purple;
+  text-align: center;
+  background-color: transparent;
+}
+.ad2 {
+  // background-color: $orange;
+  text-align: center;
+  background-color: transparent;
+}
+.ad3 {
+  // background-color: $green;
+  text-align: center;
+  background-color: transparent;
+}
+.ad4 {
+  // background-color: $red;
+  text-align: center;
+  background-color: transparent;
+}
+
+/* .swiper-pagination.swiper-pagination-clickable.swiper-pagination-bullets.swiper-pagination-horizontal {
+    bottom: 0px;
+  }
+  
+  .swiper-pagination-horizontal {
+    opacity: 0.5;
+  } */
+
+.swiper-scrollbar.swiper-scrollbar-horizontal {
+  bottom: 0px;
+}

@@ -1,0 +1,61 @@
+.main {
+  /* position: relative; */
+  text-align: center;
+  background-color: black;
+}
+
+.main > iframe {
+  /* position: absolute; */
+  /* top: 0; */
+  /* left: 0; */
+  width: 95%;
+  height: 100%;
+}
+
+.ad1 {
+  text-align: center;
+}
+.ad2 {
+  text-align: center;
+}
+.ad3 {
+  text-align: center;
+}
+.ad4 {
+  text-align: center;
+}
+
+.b_img {
+  /* top: 0;
+  left: 0; */
+  /* position: absolute; */
+  width: 90%;
+  height: 100%;
+  /* object-fit: n; */
+  object-fit: contain;
+}
+
+.ad1 {
+  background-color: red;
+}
+.ad2 {
+  background-color: blue;
+}
+.ad3 {
+  background-color: green;
+}
+.ad4 {
+  background-color: yellow;
+}
+
+/* .swiper-pagination.swiper-pagination-clickable.swiper-pagination-bullets.swiper-pagination-horizontal {
+  bottom: 0px;
+}
+
+.swiper-pagination-horizontal {
+  opacity: 0.5;
+} */
+
+.swiper-scrollbar.swiper-scrollbar-horizontal {
+  bottom: 0px;
+}
