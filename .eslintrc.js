@@ -67,7 +67,6 @@ module.exports = {
     'space-in-parens': 'error',
     'space-infix-ops': 'error',
     'space-unary-ops': 'error',
-
     // ES6
     'arrow-spacing': 'error',
     'no-confusing-arrow': 'error',

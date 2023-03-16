@@ -1,0 +1,9 @@
+<component name="libraryTable">
+  <library name="starter-kit">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/starter-kit.zip!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>
