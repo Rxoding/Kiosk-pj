@@ -9,7 +9,7 @@ import Modal from "./commons/components/Modals/Modal";
 // =========================================================================
 import "../../src/views/assets/css/home.scss";
 
-import EditBtn from "../@core/layouts/components/navbar/UserDropdown";
+// import EditBtn from "../@core/layouts/components/navbar/UserDropdown";
 
 // Swiper====================================================================
 import { Swiper, SwiperSlide } from "swiper/react";
@@ -32,11 +32,11 @@ SwiperCore.use([Navigation, Pagination, Autoplay, Scrollbar]);
 const ResponsiveGridLayout = WidthProvider(Responsive);
 
 const Home = () => {
-  const [EditBtn, setEditBtn] = React.useState(false);
-  const onClick = () => {
-    setEditBtn((current) => !current);
-  };
-  console.log(EditBtn);
+  // EditBtn
+  let EditBtn = localStorage.getItem("edit");
+  EditBtn = JSON.parse(EditBtn);
+  console.log("Home 에딧", EditBtn);
+
   // responsive grid에 필요한 state
   const [state, setState] = useState({
     breakpoints: "lg",
@@ -69,20 +69,30 @@ const Home = () => {
         { i: "e", x: 6, y: 2, w: 6, h: 3, minW: 1, maxW: 12, minH: 1, maxH: 4 },
       ],
     },
+    // layouts: { lg: [] },
   });
+
+  console.log("state :", state.layouts);
 
   // grid-layout 변경 시 사용
   const onLayoutChange = (layout, layouts) => {
-    console.log("layouts", layouts, layout);
+    console.log("layouts :", layouts, "layout :", layout);
+    localStorage.setItem("state", JSON.stringify(layouts));
     setState((state) => ({
       ...state,
+      // layout: layout,
       layouts: layouts,
     }));
   };
+  let states = localStorage.getItem("state");
+  states = JSON.parse(states);
+  console.log("states", states);
+  // states = new Set(states);
+  // states = [...states];
 
   // breakpoint 변경
   const onBreakPointChange = (breakpoint) => {
-    // console.log(breakpoint) // lg or md or sm or xs or xxs
+    console.log("breakpoint :", breakpoint); // lg or md or sm or xs or xxs
     setState((state) => ({
       ...state,
       breakpoints: breakpoint,
@@ -137,7 +147,9 @@ const Home = () => {
       <React.Fragment>
         <ResponsiveGridLayout
           className="layout"
-          layouts={state.layouts}
+          // layouts={state.layouts}
+          layouts={states}
+          // layouts={onLayoutChange.layout}
           breakpoints={{
             lg: 1200,
             md: 996,
@@ -146,6 +158,8 @@ const Home = () => {
             xxs: 0,
           }}
           cols={{ lg: 12, md: 10, sm: 6, xs: 4, xxs: 2 }}
+          // rowHeight={150}
+          width={1000}
           onLayoutChange={onLayoutChange}
           onBreakpointChange={onBreakPointChange}
           isResizable={EditBtn}
@@ -199,9 +213,9 @@ const Home = () => {
           </div>
         </ResponsiveGridLayout>
       </React.Fragment>
-      <button onClick={onClick}>
+      {/* <button onClick={onClick}>
         <h1>{EditBtn ? "저장하기" : "수정하기"}</h1>
-      </button>
+      </button> */}
       <React.Fragment>
         {/* <button onClick={openModal}>모달팝업</button> */}
         <Modal open={modalOpen} close={closeModal} header="ad4">

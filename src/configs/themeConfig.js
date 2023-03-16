@@ -15,7 +15,7 @@ const themeConfig = {
     type: "vertical", // vertical, horizontal
     contentWidth: "boxed", // full, boxed
     menu: {
-      isHidden: false,
+      isHidden: true,
       isCollapsed: false,
     },
     navbar: {

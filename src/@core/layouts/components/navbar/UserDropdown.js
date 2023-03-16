@@ -6,8 +6,6 @@ import React, { useState } from "react";
 // ** Custom Components
 import Avatar from "@components/avatar";
 
-// import Edit from "../../../../views/Home"
-
 // ** Third Party Components
 import {
   User,
@@ -36,7 +34,8 @@ const UserDropdown = () => {
   const onClick = () => {
     setEditBtn((current) => !current);
   };
-  console.log(EditBtn);
+  localStorage.setItem("edit", EditBtn);
+  // console.log(EditBtn);
   return (
     <UncontrolledDropdown tag="li" className="dropdown-user nav-item">
       <DropdownToggle
