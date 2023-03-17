@@ -9,8 +9,6 @@ import Modal from "./commons/components/Modals/Modal";
 // =========================================================================
 import "../../src/views/assets/css/home.scss";
 
-// import EditBtn from "../@core/layouts/components/navbar/UserDropdown";
-
 // Swiper====================================================================
 import { Swiper, SwiperSlide } from "swiper/react";
 import SwiperCore, {
