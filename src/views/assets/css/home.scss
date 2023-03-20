@@ -53,38 +53,54 @@ $card-box-shadow: $box-shadow !default;
   /* top: 0; */
   /* left: 0; */
   width: 95%;
-  height: 95%;
+  height: 99.9%;
 }
 
 .b_img {
   /* top: 0;
     left: 0; */
-  /* position: absolute; */
+  position: relative;
   width: 90%;
   height: 100%;
   /* object-fit: n; */
   object-fit: contain;
 }
 
+.arrow {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+}
+.arrow_u {
+  position: absolute;
+  right: 0;
+  top: 0;
+}
+.arrow_l {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+}
+
 .ad1 {
   // background-color: $purple;
   text-align: center;
-  background-color: transparent;
+  background-color: $gray-50;
 }
 .ad2 {
   // background-color: $orange;
   text-align: center;
-  background-color: transparent;
+  background-color: $gray-50;
 }
 .ad3 {
   // background-color: $green;
   text-align: center;
-  background-color: transparent;
+  background-color: $gray-50;
 }
 .ad4 {
   // background-color: $red;
   text-align: center;
-  background-color: transparent;
+  background-color: $gray-50;
 }
 
 /* .swiper-pagination.swiper-pagination-clickable.swiper-pagination-bullets.swiper-pagination-horizontal {

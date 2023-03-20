@@ -1,8 +1,7 @@
-import "./App.css";
 import { Responsive, WidthProvider } from "react-grid-layout";
 import React, { useState } from "react";
 import "react-grid-layout/css/styles.css";
-import "react-resizable/css/styles.css";
+// import "react-resizable/css/styles.css";
 
 //Modal======================================================================
 import Modal from "./commons/components/Modals/Modal";
@@ -25,6 +24,17 @@ import "swiper/css/effect-fade";
 import "swiper/css/pagination";
 import "swiper/css/scrollbar";
 //===========================================================================
+
+// Arrow=====================================================================
+import {
+  ArrowDown,
+  ArrowDownRight,
+  ArrowLeft,
+  ArrowRight,
+  ArrowUp,
+} from "react-feather";
+//===========================================================================
+
 SwiperCore.use([Navigation, Pagination, Autoplay, Scrollbar]);
 
 const ResponsiveGridLayout = WidthProvider(Responsive);
@@ -45,7 +55,7 @@ const Home = () => {
           x: 0,
           y: 0,
           w: 12,
-          h: 2,
+          h: 3,
           minW: 1,
           maxW: 12,
           minH: 1,
@@ -62,9 +72,9 @@ const Home = () => {
           minH: 1,
           maxH: 4,
         },
-        { i: "c", x: 0, y: 2, w: 6, h: 4, minW: 1, maxW: 12, minH: 1, maxH: 4 },
+        { i: "c", x: 0, y: 2, w: 6, h: 2, minW: 1, maxW: 12, minH: 1, maxH: 4 },
         { i: "d", x: 6, y: 2, w: 6, h: 1, minW: 1, maxW: 12, minH: 1, maxH: 4 },
-        { i: "e", x: 6, y: 2, w: 6, h: 3, minW: 1, maxW: 12, minH: 1, maxH: 4 },
+        { i: "e", x: 6, y: 2, w: 6, h: 1, minW: 1, maxW: 12, minH: 1, maxH: 4 },
       ],
     },
     // layouts: { lg: [] },
@@ -140,6 +150,7 @@ const Home = () => {
     setModalOpen2(false);
   };
   //===================================================================================================
+
   return (
     <div>
       <React.Fragment>
@@ -160,16 +171,26 @@ const Home = () => {
           width={1000}
           onLayoutChange={onLayoutChange}
           onBreakpointChange={onBreakPointChange}
-          isResizable={EditBtn}
+          // isResizable={EditBtn}
+          isResizable={false}
           isDraggable={EditBtn}
         >
           <div className="main" key="a">
-            <iframe
+            {/* <iframe
               src="https://www.youtube.com/embed/0LVe781OoQI?autoplay=1&mute=1"
               title="YouTube video player"
               frameBorder="0"
               allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-            ></iframe>
+            ></iframe> */}
+            {/* <ArrowDown size={60}></ArrowDown> */}
+            <ArrowDown
+              className={EditBtn == false ? "arrow hidden" : "arrow"}
+              size={50}
+            />
+            <ArrowUp
+              className={EditBtn == false ? "arrow_u hidden" : "arrow_u"}
+              size={50}
+            />
           </div>
           <div className="ad1" key="b">
             <Swiper
@@ -190,30 +211,59 @@ const Home = () => {
                 );
               })}
             </Swiper>
+            <ArrowDown
+              className={EditBtn == false ? "arrow hidden" : "arrow"}
+              size={50}
+            />
+            <ArrowUp
+              className={EditBtn == false ? "arrow_u hidden" : "arrow_u"}
+              size={50}
+            />
           </div>
           <div className="ad2" key="c">
             <img
               className="b_img"
               src="https://image-se.ycrowdy.com/20210624/CROWDY_202106241006110658_Gyj7L.png"
             ></img>
+            <ArrowRight
+              className={EditBtn == false ? "arrow hidden" : "arrow"}
+              size={50}
+            />
+            <ArrowLeft
+              className={EditBtn == false ? "arrow_l hidden" : "arrow_l"}
+              size={50}
+            />
           </div>
           <div className="ad3" key="d" onClick={openModal2}>
             <img
               className="b_img"
               src="https://image-se.ycrowdy.com/20210624/CROWDY_202106241006110658_Gyj7L.png"
             ></img>
+            <ArrowDown
+              className={EditBtn == false ? "arrow hidden" : "arrow"}
+              size={50}
+            />
+            <ArrowUp
+              className={EditBtn == false ? "arrow_u hidden" : "arrow_u"}
+              size={50}
+            />
           </div>
           <div className="ad4" key="e" onClick={openModal}>
             <img
               className="b_img"
               src="https://cdn.wadiz.kr/ft/images/green001/2020/1025/20201025235147078_2.jpg/wadiz/format/jpg/quality/80/"
             ></img>
+            <ArrowDown
+              className={EditBtn == false ? "arrow hidden" : "arrow"}
+              size={50}
+            />
+            <ArrowUp
+              className={EditBtn == false ? "arrow_u hidden" : "arrow_u"}
+              size={50}
+            />
           </div>
         </ResponsiveGridLayout>
       </React.Fragment>
-      {/* <button onClick={onClick}>
-        <h1>{EditBtn ? "저장하기" : "수정하기"}</h1>
-      </button> */}
       <React.Fragment>
         {/* <button onClick={openModal}>모달팝업</button> */}
         <Modal open={modalOpen} close={closeModal} header="ad4">
@@ -236,9 +286,3 @@ const Home = () => {
 };
 
 export default Home;
-
-// const Home = () => {
-//   return <h1>fdfasdfdasfasdfdfadsd</h1>;
-// };
-
-// export default Home;
