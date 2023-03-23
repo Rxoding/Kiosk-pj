@@ -33,6 +33,7 @@ import {
   ArrowRight,
   ArrowUp,
 } from "react-feather";
+import { layouts } from "chart.js";
 //===========================================================================
 
 SwiperCore.use([Navigation, Pagination, Autoplay, Scrollbar]);
@@ -91,6 +92,12 @@ const Home = () => {
       // layout: layout,
       layouts: layouts,
     }));
+    // let newPos = index + 1;
+    // if (index === -1) throw new Error("Element not found in content");
+
+    // if (newPos >= states.length) newPos = states.length;
+    // layouts.slice(index, 1);
+    // layouts.slice(newPos, 0, value);
   };
   let states = localStorage.getItem("state");
   states = JSON.parse(states);
@@ -101,10 +108,26 @@ const Home = () => {
   // breakpoint 변경
   const onBreakPointChange = (breakpoint) => {
     console.log("breakpoint :", breakpoint); // lg or md or sm or xs or xxs
+
     setState((state) => ({
       ...state,
       breakpoints: breakpoint,
     }));
+  };
+
+  // 배열 순서 바꾸기
+  const changeArrayOrder = (layout, layouts) => {
+    console.log(layout.indexOf(layout));
+    const index = layout.indexOf(layouts);
+    let newPos = index + 1;
+    if (index === -1) throw new Error("Element not found in content");
+
+    const states = JSON.parse(JSON.stringify(states));
+    if (newPos >= states.length) newPos = states.length;
+    layouts.splice(index, 1);
+    layouts.splice(newPos, 0, value);
+
+    return;
   };
 
   //Swiper ===================================================================================================
@@ -176,12 +199,12 @@ const Home = () => {
           isDraggable={EditBtn}
         >
           <div className="main" key="a">
-            {/* <iframe
+            <iframe
               src="https://www.youtube.com/embed/0LVe781OoQI?autoplay=1&mute=1"
               title="YouTube video player"
               frameBorder="0"
               allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-            ></iframe> */}
+            ></iframe>
             {/* <ArrowDown size={60}></ArrowDown> */}
             <ArrowDown
               className={EditBtn == false ? "arrow hidden" : "arrow"}
@@ -242,6 +265,7 @@ const Home = () => {
             <ArrowDown
               className={EditBtn == false ? "arrow hidden" : "arrow"}
               size={50}
+              // onClick={onLayoutChange}
             />
             <ArrowUp
               className={EditBtn == false ? "arrow_u hidden" : "arrow_u"}
@@ -268,7 +292,6 @@ const Home = () => {
         {/* <button onClick={openModal}>모달팝업</button> */}
         <Modal open={modalOpen} close={closeModal} header="ad4">
           {/* // Modal.js <main> {props.children} </main>에 내용이 입력된다. 리액트 */}
-          ad4
         </Modal>
         <Modal open={modalOpen2} close={closeModal2} header="ad3">
           {/* // Modal.js <main> {props.children} </main>에 내용이 입력된다. 리액트 */}
