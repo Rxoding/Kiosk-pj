@@ -1,7 +1,7 @@
 import { Responsive, WidthProvider } from "react-grid-layout";
 import React, { useState } from "react";
 import "react-grid-layout/css/styles.css";
-// import "react-resizable/css/styles.css";
+import "react-resizable/css/styles.css";
 
 //Modal======================================================================
 import Modal from "./commons/components/Modals/Modal";
@@ -32,7 +32,9 @@ import {
   ArrowLeft,
   ArrowRight,
   ArrowUp,
+  Layout,
 } from "react-feather";
+import { layouts } from "chart.js";
 //===========================================================================
 
 SwiperCore.use([Navigation, Pagination, Autoplay, Scrollbar]);
@@ -43,7 +45,7 @@ const Home = () => {
   // EditBtn
   let EditBtn = localStorage.getItem("edit");
   EditBtn = JSON.parse(EditBtn);
-  console.log("Home 에딧", EditBtn);
+  // console.log("Home 에딧", EditBtn);
 
   // responsive grid에 필요한 state
   const [state, setState] = useState({
@@ -77,26 +79,62 @@ const Home = () => {
         { i: "e", x: 6, y: 2, w: 6, h: 1, minW: 1, maxW: 12, minH: 1, maxH: 4 },
       ],
     },
-    // layouts: { lg: [] },
   });
 
-  console.log("state :", state.layouts);
+  // localStorage.setItem("state", JSON.stringify(layouts)),
+  // console.log("원래 자리 :", state.layouts);
 
   // grid-layout 변경 시 사용
   const onLayoutChange = (layout, layouts) => {
     console.log("layouts :", layouts, "layout :", layout);
-    localStorage.setItem("state", JSON.stringify(layouts));
+    // console.log("레이아웃따로", states.lg[0].y);
+    // console.log("레이아웃 타입", layout[0].w);
     setState((state) => ({
       ...state,
-      // layout: layout,
       layouts: layouts,
     }));
+    localStorage.setItem("state", JSON.stringify(layouts));
+    // localStorage.setItem("state", JSON.parse(layouts));
   };
   let states = localStorage.getItem("state");
   states = JSON.parse(states);
-  console.log("states", states);
-  // states = new Set(states);
-  // states = [...states];
+  // console.log("states", states);
+  // const onLayoutChange = (layout, layouts) => {
+  //   const newLayout = [...state];
+  //   newLayout = layouts;
+  //   setState(newLayout);
+  //   localStorage.setItem("state", JSON.stringify(layouts));
+  // };
+
+  //Arrow
+  const arrowState = () => {
+    console.log("메인아래화살표", states.lg[0].y);
+    const statesToUpdate = states.lg[0];
+    if (statesToUpdate) {
+      console.log("변경전", states.lg[0].y);
+      states.lg[0].y += 2;
+    }
+    console.log(states.lg[0].y);
+    // states.lg[0].y = states.lg[0].y + 2;
+    const originState = localStorage.getItem("state");
+    const pState = JSON.parse(originState);
+    console.log(pState.lg[0]);
+    const mainDown = pState.lg[0];
+    if (mainDown) {
+      mainDown.y += 2;
+    }
+    console.log(mainDown);
+    // console.log(pState.find((item) => item.i === "a"));
+    // console.log(pState.lg[0]);
+    setState((state) => ({
+      ...state,
+      layouts: layouts,
+    }));
+    // localStorage.setItem("statez", JSON.stringify(layouts));
+  };
+  // let statez = localStorage.getItem("statez");
+  // statez = JSON.parse(statez);
+  // console.log("statez", statez);
 
   // breakpoint 변경
   const onBreakPointChange = (breakpoint) => {
@@ -158,7 +196,6 @@ const Home = () => {
           className="layout"
           // layouts={state.layouts}
           layouts={states}
-          // layouts={onLayoutChange.layout}
           breakpoints={{
             lg: 1200,
             md: 996,
@@ -173,7 +210,8 @@ const Home = () => {
           onBreakpointChange={onBreakPointChange}
           // isResizable={EditBtn}
           isResizable={false}
-          isDraggable={EditBtn}
+          // isDraggable={EditBtn}
+          isDraggable={false}
         >
           <div className="main" key="a">
             {/* <iframe
@@ -186,10 +224,12 @@ const Home = () => {
             <ArrowDown
               className={EditBtn == false ? "arrow hidden" : "arrow"}
               size={50}
+              onClick={arrowState}
             />
             <ArrowUp
               className={EditBtn == false ? "arrow_u hidden" : "arrow_u"}
               size={50}
+              // onClick={arrowState}
             />
           </div>
           <div className="ad1" key="b">
@@ -201,7 +241,7 @@ const Home = () => {
               // navigation
               // pagination={{ clickable: true }}
               scrollbar={{ draggable: false }}
-              autoplay={{ delay: 3000 }}
+              // autoplay={{ delay: 3000 }}
             >
               {swiperBanner.map((item, idx) => {
                 return (
