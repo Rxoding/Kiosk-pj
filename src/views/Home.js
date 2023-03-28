@@ -497,13 +497,12 @@ const Home = () => {
           isDraggable={false}
         >
           <div className="main" key="a">
-            {/* <iframe
+            <iframe
               src="https://www.youtube.com/embed/0LVe781OoQI?autoplay=1&mute=1"
               title="YouTube video player"
               frameBorder="0"
               allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-            ></iframe> */}
-            {/* <ArrowDown size={60}></ArrowDown> */}
+            ></iframe>
             <ArrowDown
               className={EditBtn == false ? "arrow hidden" : "arrow"}
               size={50}
@@ -524,7 +523,7 @@ const Home = () => {
               // navigation
               // pagination={{ clickable: true }}
               scrollbar={{ draggable: false }}
-              // autoplay={{ delay: 3000 }}
+              autoplay={{ delay: 3000 }}
             >
               {swiperBanner.map((item, idx) => {
                 return (
