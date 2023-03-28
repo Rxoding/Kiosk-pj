@@ -20,7 +20,7 @@
   padding: 0px;
   min-height: $navbar-height;
   font-family: $font-family-monospace;
-  transition: 300ms ease all, background 0s;
+  transition: 300ms ease all, background 0.3s;
   z-index: 997;
 
   &.fixed-top,
