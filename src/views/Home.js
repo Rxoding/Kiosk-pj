@@ -93,12 +93,9 @@ const Home = () => {
       ...state,
       layouts: layouts,
     }));
-    localStorage.setItem("state", JSON.stringify(layouts));
-    // localStorage.setItem("state", JSON.parse(layouts));
+    // localStorage.setItem("state", JSON.stringify(layouts));
   };
-  let states = localStorage.getItem("state");
-  states = JSON.parse(states);
-  // console.log("states", states);
+
   // const onLayoutChange = (layout, layouts) => {
   //   const newLayout = [...state];
   //   newLayout = layouts;
@@ -107,35 +104,321 @@ const Home = () => {
   // };
 
   //Arrow
-  const arrowState = () => {
-    console.log("메인아래화살표", states.lg[0].y);
-    const statesToUpdate = states.lg[0];
-    if (statesToUpdate) {
-      console.log("변경전", states.lg[0].y);
-      states.lg[0].y += 2;
-    }
-    console.log(states.lg[0].y);
-    // states.lg[0].y = states.lg[0].y + 2;
-    const originState = localStorage.getItem("state");
-    const pState = JSON.parse(originState);
-    console.log(pState.lg[0]);
-    const mainDown = pState.lg[0];
-    if (mainDown) {
-      mainDown.y += 2;
-    }
-    console.log(mainDown);
-    // console.log(pState.find((item) => item.i === "a"));
-    // console.log(pState.lg[0]);
+  const arrowUp = () => {
+    const statesA = states.lg.find((item) => item.i === "a");
+    const statesB = states.lg.find((item) => item.i === "b");
+    const statesC = states.lg.find((item) => item.i === "c");
+    const statesD = states.lg.find((item) => item.i === "d");
+    const statesE = states.lg.find((item) => item.i === "e");
+    if (statesA.y === 2 && statesB.y === 0) {
+      statesA.y = 0;
+      statesB.y = 3;
+      statesC.y = 5;
+      statesD.y = 5;
+      statesE.y = 6;
+    } else if (statesA.y === 2 && statesB.y === 5) {
+      statesA.y = 0;
+      statesB.y = 5;
+      statesC.y = 3;
+      statesD.y = 3;
+      statesE.y = 4;
+    } else if (statesA.y === 4 && statesB.y === 0) {
+      statesA.y = 2;
+      statesB.y = 0;
+      statesC.y = 5;
+      statesD.y = 5;
+      statesE.y = 6;
+    } else if (statesA.y === 4 && statesB.y === 2) {
+      statesA.y = 2;
+      statesB.y = 5;
+      statesC.y = 0;
+      statesD.y = 0;
+      statesE.y = 1;
+    } else alert("더이상 움직일 수 없습니다.");
+    localStorage.setItem("state", JSON.stringify(states));
+
+    states = localStorage.getItem("state");
+    states = JSON.parse(states);
     setState((state) => ({
       ...state,
-      layouts: layouts,
+      layouts: states,
     }));
-    // localStorage.setItem("statez", JSON.stringify(layouts));
   };
-  // let statez = localStorage.getItem("statez");
-  // statez = JSON.parse(statez);
-  // console.log("statez", statez);
 
+  const arrowDown = () => {
+    const statesA = states.lg.find((item) => item.i === "a");
+    const statesB = states.lg.find((item) => item.i === "b");
+    const statesC = states.lg.find((item) => item.i === "c");
+    const statesD = states.lg.find((item) => item.i === "d");
+    const statesE = states.lg.find((item) => item.i === "e");
+    if (statesA.y === 0 && statesB.y === 3) {
+      statesA.y = 2;
+      statesB.y = 0;
+      statesC.y = 5;
+      statesD.y = 5;
+      statesE.y = 6;
+    } else if (statesA.y === 0 && statesB.y === 5) {
+      statesA.y = 2;
+      statesB.y = 5;
+      statesC.y = 0;
+      statesD.y = 0;
+      statesE.y = 1;
+    } else if (statesA.y === 2 && statesB.y === 0) {
+      statesA.y = 4;
+      statesB.y = 0;
+      statesC.y = 2;
+      statesD.y = 2;
+      statesE.y = 3;
+    } else if (statesA.y === 2 && statesB.y === 5) {
+      statesA.y = 4;
+      statesB.y = 2;
+      statesC.y = 0;
+      statesD.y = 0;
+      statesE.y = 1;
+    } else alert("더이상 움직일 수 없습니다.");
+    localStorage.setItem("state", JSON.stringify(states));
+    states = localStorage.getItem("state");
+    states = JSON.parse(states);
+    setState((state) => ({
+      ...state,
+      layouts: states,
+    }));
+  };
+
+  const arrowUpad1 = () => {
+    const statesA = states.lg.find((item) => item.i === "a");
+    const statesB = states.lg.find((item) => item.i === "b");
+    const statesC = states.lg.find((item) => item.i === "c");
+    const statesD = states.lg.find((item) => item.i === "d");
+    const statesE = states.lg.find((item) => item.i === "e");
+    if (statesB.y === 3) {
+      statesA.y = 2;
+      statesB.y = 0;
+      statesC.y = 5;
+      statesD.y = 5;
+      statesE.y = 6;
+    } else if (statesB.y === 5 && statesA.y === 0) {
+      statesA.y = 0;
+      statesB.y = 3;
+      statesC.y = 5;
+      statesD.y = 5;
+      statesE.y = 6;
+    } else if (statesB.y === 5 && statesA.y === 2) {
+      statesA.y = 4;
+      statesB.y = 2;
+      statesC.y = 0;
+      statesD.y = 0;
+      statesE.y = 1;
+    } else if (statesB.y === 2) {
+      statesA.y = 4;
+      statesB.y = 0;
+      statesC.y = 2;
+      statesD.y = 2;
+      statesE.y = 3;
+    } else alert("더이상 움직일 수 없습니다.");
+    localStorage.setItem("state", JSON.stringify(states));
+
+    states = localStorage.getItem("state");
+    states = JSON.parse(states);
+    setState((state) => ({
+      ...state,
+      layouts: states,
+    }));
+  };
+
+  const arrowDownad1 = () => {
+    const statesA = states.lg.find((item) => item.i === "a");
+    const statesB = states.lg.find((item) => item.i === "b");
+    const statesC = states.lg.find((item) => item.i === "c");
+    const statesD = states.lg.find((item) => item.i === "d");
+    const statesE = states.lg.find((item) => item.i === "e");
+    if (statesB.y === 0 && statesA.y === 2) {
+      statesA.y = 0;
+      statesB.y = 3;
+      statesC.y = 5;
+      statesD.y = 5;
+      statesE.y = 6;
+    } else if (statesB.y === 3) {
+      statesA.y = 0;
+      statesB.y = 5;
+      statesC.y = 3;
+      statesD.y = 3;
+      statesE.y = 4;
+    } else if (statesB.y === 0 && statesA.y === 4) {
+      statesA.y = 4;
+      statesB.y = 2;
+      statesC.y = 0;
+      statesD.y = 0;
+      statesE.y = 1;
+    } else if (statesB.y === 2) {
+      statesA.y = 2;
+      statesB.y = 5;
+      statesC.y = 0;
+      statesD.y = 0;
+      statesE.y = 1;
+    } else alert("더이상 움직일 수 없습니다.");
+    localStorage.setItem("state", JSON.stringify(states));
+    states = localStorage.getItem("state");
+    states = JSON.parse(states);
+    setState((state) => ({
+      ...state,
+      layouts: states,
+    }));
+  };
+
+  const arrowRight = () => {
+    const statesA = states.lg.find((item) => item.i === "a");
+    const statesB = states.lg.find((item) => item.i === "b");
+    const statesC = states.lg.find((item) => item.i === "c");
+    const statesD = states.lg.find((item) => item.i === "d");
+    const statesE = states.lg.find((item) => item.i === "e");
+    if (statesC.x === 0) {
+      statesC.x = 6;
+      statesD.x = 0;
+      statesE.x = 0;
+    } else alert("더이상 움직일 수 없습니다.");
+    localStorage.setItem("state", JSON.stringify(states));
+
+    states = localStorage.getItem("state");
+    states = JSON.parse(states);
+    setState((state) => ({
+      ...state,
+      layouts: states,
+    }));
+  };
+
+  const arrowLeft = () => {
+    const statesA = states.lg.find((item) => item.i === "a");
+    const statesB = states.lg.find((item) => item.i === "b");
+    const statesC = states.lg.find((item) => item.i === "c");
+    const statesD = states.lg.find((item) => item.i === "d");
+    const statesE = states.lg.find((item) => item.i === "e");
+    if (statesC.x === 6) {
+      statesC.x = 0;
+      statesD.x = 6;
+      statesE.x = 6;
+    } else alert("더이상 움직일 수 없습니다.");
+    localStorage.setItem("state", JSON.stringify(states));
+    states = localStorage.getItem("state");
+    states = JSON.parse(states);
+    setState((state) => ({
+      ...state,
+      layouts: states,
+    }));
+  };
+
+  const arrowUpad2 = () => {
+    const statesC = states.lg.find((item) => item.i === "c");
+    const statesD = states.lg.find((item) => item.i === "d");
+    const statesE = states.lg.find((item) => item.i === "e");
+    if (statesC.y === 0) {
+      statesD.y = 0;
+      statesE.y = 1;
+    } else if (statesC.y === 2) {
+      statesD.y = 2;
+      statesE.y = 3;
+    } else if (statesC.y === 5) {
+      statesD.y = 5;
+      statesE.y = 6;
+    } else if (statesC.y === 3) {
+      statesD.y = 3;
+      statesE.y = 4;
+    }
+    localStorage.setItem("state", JSON.stringify(states));
+
+    states = localStorage.getItem("state");
+    states = JSON.parse(states);
+    setState((state) => ({
+      ...state,
+      layouts: states,
+    }));
+  };
+
+  const arrowDownad2 = () => {
+    const statesC = states.lg.find((item) => item.i === "c");
+    const statesD = states.lg.find((item) => item.i === "d");
+    const statesE = states.lg.find((item) => item.i === "e");
+    if (statesC.y === 0) {
+      statesD.y = 1;
+      statesE.y = 0;
+    } else if (statesC.y === 2) {
+      statesD.y = 3;
+      statesE.y = 2;
+    } else if (statesC.y === 5) {
+      statesD.y = 6;
+      statesE.y = 5;
+    } else if (statesC.y === 3) {
+      statesD.y = 4;
+      statesE.y = 3;
+    }
+    localStorage.setItem("state", JSON.stringify(states));
+    states = localStorage.getItem("state");
+    states = JSON.parse(states);
+    setState((state) => ({
+      ...state,
+      layouts: states,
+    }));
+  };
+
+  const arrowUpad3 = () => {
+    const statesC = states.lg.find((item) => item.i === "c");
+    const statesD = states.lg.find((item) => item.i === "d");
+    const statesE = states.lg.find((item) => item.i === "e");
+    if (statesC.y === 0) {
+      statesD.y = 1;
+      statesE.y = 0;
+    } else if (statesC.y === 2) {
+      statesD.y = 3;
+      statesE.y = 2;
+    } else if (statesC.y === 5) {
+      statesD.y = 6;
+      statesE.y = 5;
+    } else if (statesC.y === 3) {
+      statesD.y = 4;
+      statesE.y = 3;
+    }
+    localStorage.setItem("state", JSON.stringify(states));
+
+    states = localStorage.getItem("state");
+    states = JSON.parse(states);
+    setState((state) => ({
+      ...state,
+      layouts: states,
+    }));
+  };
+
+  const arrowDownad3 = () => {
+    const statesC = states.lg.find((item) => item.i === "c");
+    const statesD = states.lg.find((item) => item.i === "d");
+    const statesE = states.lg.find((item) => item.i === "e");
+    if (statesC.y === 0) {
+      statesD.y = 0;
+      statesE.y = 1;
+    } else if (statesC.y === 2) {
+      statesD.y = 2;
+      statesE.y = 3;
+    } else if (statesC.y === 5) {
+      statesD.y = 5;
+      statesE.y = 6;
+    } else if (statesC.y === 3) {
+      statesD.y = 3;
+      statesE.y = 4;
+    }
+    localStorage.setItem("state", JSON.stringify(states));
+    states = localStorage.getItem("state");
+    states = JSON.parse(states);
+    setState((state) => ({
+      ...state,
+      layouts: states,
+    }));
+  };
+
+  let states = localStorage.getItem("state");
+  states = JSON.parse(states);
+  console.log("현재 states", states);
+  console.log(
+    "==========================================================================="
+  );
   // breakpoint 변경
   const onBreakPointChange = (breakpoint) => {
     console.log("breakpoint :", breakpoint); // lg or md or sm or xs or xxs
@@ -224,12 +507,12 @@ const Home = () => {
             <ArrowDown
               className={EditBtn == false ? "arrow hidden" : "arrow"}
               size={50}
-              onClick={arrowState}
+              onClick={arrowDown}
             />
             <ArrowUp
               className={EditBtn == false ? "arrow_u hidden" : "arrow_u"}
               size={50}
-              // onClick={arrowState}
+              onClick={arrowUp}
             />
           </div>
           <div className="ad1" key="b">
@@ -254,10 +537,12 @@ const Home = () => {
             <ArrowDown
               className={EditBtn == false ? "arrow hidden" : "arrow"}
               size={50}
+              onClick={arrowDownad1}
             />
             <ArrowUp
               className={EditBtn == false ? "arrow_u hidden" : "arrow_u"}
               size={50}
+              onClick={arrowUpad1}
             />
           </div>
           <div className="ad2" key="c">
@@ -268,10 +553,12 @@ const Home = () => {
             <ArrowRight
               className={EditBtn == false ? "arrow hidden" : "arrow"}
               size={50}
+              onClick={arrowRight}
             />
             <ArrowLeft
               className={EditBtn == false ? "arrow_l hidden" : "arrow_l"}
               size={50}
+              onClick={arrowLeft}
             />
           </div>
           <div className="ad3" key="d" onClick={openModal2}>
@@ -282,10 +569,12 @@ const Home = () => {
             <ArrowDown
               className={EditBtn == false ? "arrow hidden" : "arrow"}
               size={50}
+              onClick={arrowDownad2}
             />
             <ArrowUp
               className={EditBtn == false ? "arrow_u hidden" : "arrow_u"}
               size={50}
+              onClick={arrowUpad2}
             />
           </div>
           <div className="ad4" key="e" onClick={openModal}>
@@ -296,10 +585,12 @@ const Home = () => {
             <ArrowDown
               className={EditBtn == false ? "arrow hidden" : "arrow"}
               size={50}
+              onClick={arrowDownad3}
             />
             <ArrowUp
               className={EditBtn == false ? "arrow_u hidden" : "arrow_u"}
               size={50}
+              onClick={arrowUpad3}
             />
           </div>
         </ResponsiveGridLayout>
