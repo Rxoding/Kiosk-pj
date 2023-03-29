@@ -81,8 +81,15 @@ const Home = () => {
     },
   });
 
-  // localStorage.setItem("state", JSON.stringify(layouts)),
   // console.log("원래 자리 :", state.layouts);
+  // localStorage.setItem("state", JSON.stringify(layouts.layouts));
+  // let states = localStorage.setItem("state", JSON.stringify(state.layouts));
+  let states = localStorage.getItem("state");
+  states = JSON.parse(states);
+
+  if (states === {}) {
+    states = localStorage.setItem("state", JSON.stringify(state.layouts));
+  }
 
   // grid-layout 변경 시 사용
   const onLayoutChange = (layout, layouts) => {
@@ -93,7 +100,9 @@ const Home = () => {
       ...state,
       layouts: layouts,
     }));
-    // localStorage.setItem("state", JSON.stringify(layouts));
+    // localStorage.setItem("state", JSON.stringify(state.layouts));
+    // states = localStorage.getItem("state");
+    // states = JSON.parse(states);
   };
 
   // const onLayoutChange = (layout, layouts) => {
@@ -104,6 +113,7 @@ const Home = () => {
   // };
 
   //Arrow
+
   const arrowUp = () => {
     const statesA = states.lg.find((item) => item.i === "a");
     const statesB = states.lg.find((item) => item.i === "b");
@@ -136,9 +146,9 @@ const Home = () => {
       statesE.y = 1;
     } else alert("더이상 움직일 수 없습니다.");
     localStorage.setItem("state", JSON.stringify(states));
-
     states = localStorage.getItem("state");
     states = JSON.parse(states);
+    // setState(states);
     setState((state) => ({
       ...state,
       layouts: states,
@@ -176,13 +186,14 @@ const Home = () => {
       statesD.y = 0;
       statesE.y = 1;
     } else alert("더이상 움직일 수 없습니다.");
-    localStorage.setItem("state", JSON.stringify(states));
-    states = localStorage.getItem("state");
-    states = JSON.parse(states);
+
     setState((state) => ({
       ...state,
       layouts: states,
     }));
+    localStorage.setItem("state", JSON.stringify(states));
+    states = localStorage.getItem("state");
+    states = JSON.parse(states);
   };
 
   const arrowUpad1 = () => {
@@ -216,14 +227,14 @@ const Home = () => {
       statesD.y = 2;
       statesE.y = 3;
     } else alert("더이상 움직일 수 없습니다.");
-    localStorage.setItem("state", JSON.stringify(states));
-
-    states = localStorage.getItem("state");
-    states = JSON.parse(states);
     setState((state) => ({
       ...state,
       layouts: states,
     }));
+    localStorage.setItem("state", JSON.stringify(states));
+
+    states = localStorage.getItem("state");
+    states = JSON.parse(states);
   };
 
   const arrowDownad1 = () => {
@@ -413,12 +424,6 @@ const Home = () => {
     }));
   };
 
-  let states = localStorage.getItem("state");
-  states = JSON.parse(states);
-  console.log("현재 states", states);
-  console.log(
-    "==========================================================================="
-  );
   // breakpoint 변경
   const onBreakPointChange = (breakpoint) => {
     console.log("breakpoint :", breakpoint); // lg or md or sm or xs or xxs
@@ -497,12 +502,12 @@ const Home = () => {
           isDraggable={false}
         >
           <div className="main" key="a">
-            <iframe
+            {/* <iframe
               src="https://www.youtube.com/embed/0LVe781OoQI?autoplay=1&mute=1"
               title="YouTube video player"
               frameBorder="0"
               allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-            ></iframe>
+            ></iframe> */}
             <ArrowDown
               className={EditBtn == false ? "arrow hidden" : "arrow"}
               size={50}
