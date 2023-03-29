@@ -82,13 +82,13 @@ const Home = () => {
   });
 
   // console.log("원래 자리 :", state.layouts);
-  // localStorage.setItem("state", JSON.stringify(layouts.layouts));
   // let states = localStorage.setItem("state", JSON.stringify(state.layouts));
   let states = localStorage.getItem("state");
   states = JSON.parse(states);
-
-  if (states === {}) {
-    states = localStorage.setItem("state", JSON.stringify(state.layouts));
+  if (states == null) {
+    localStorage.setItem("state", JSON.stringify(state.layouts));
+  } else {
+    localStorage.setItem("state", JSON.stringify(states));
   }
 
   // grid-layout 변경 시 사용
@@ -100,7 +100,7 @@ const Home = () => {
       ...state,
       layouts: layouts,
     }));
-    // localStorage.setItem("state", JSON.stringify(state.layouts));
+    localStorage.setItem("state", JSON.stringify(layouts));
     // states = localStorage.getItem("state");
     // states = JSON.parse(states);
   };
@@ -148,7 +148,6 @@ const Home = () => {
     localStorage.setItem("state", JSON.stringify(states));
     states = localStorage.getItem("state");
     states = JSON.parse(states);
-    // setState(states);
     setState((state) => ({
       ...state,
       layouts: states,
