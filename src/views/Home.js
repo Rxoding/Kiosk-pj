@@ -1,5 +1,5 @@
 import { Responsive, WidthProvider } from "react-grid-layout";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "react-grid-layout/css/styles.css";
 import "react-resizable/css/styles.css";
 
@@ -85,6 +85,8 @@ const Home = () => {
   // let states = localStorage.setItem("state", JSON.stringify(state.layouts));
   let states = localStorage.getItem("state");
   states = JSON.parse(states);
+  localStorage.setItem("state", JSON.stringify(states));
+
   if (states == null) {
     localStorage.setItem("state", JSON.stringify(state.layouts));
   } else {
@@ -101,9 +103,9 @@ const Home = () => {
       layouts: layouts,
     }));
     localStorage.setItem("state", JSON.stringify(layouts));
-    // states = localStorage.getItem("state");
-    // states = JSON.parse(states);
   };
+  // let states = localStorage.getItem("state");
+  // states = JSON.parse(states);
 
   // const onLayoutChange = (layout, layouts) => {
   //   const newLayout = [...state];
@@ -113,6 +115,15 @@ const Home = () => {
   // };
 
   //Arrow
+  useEffect(() => {
+    localStorage.setItem("state", JSON.stringify(states));
+    states = localStorage.getItem("state");
+    states = JSON.parse(states);
+    setState((state) => ({
+      ...state,
+      layouts: states,
+    }));
+  }, states);
 
   const arrowUp = () => {
     const statesA = states.lg.find((item) => item.i === "a");
@@ -145,6 +156,7 @@ const Home = () => {
       statesD.y = 0;
       statesE.y = 1;
     } else alert("더이상 움직일 수 없습니다.");
+
     localStorage.setItem("state", JSON.stringify(states));
     states = localStorage.getItem("state");
     states = JSON.parse(states);
@@ -152,6 +164,8 @@ const Home = () => {
       ...state,
       layouts: states,
     }));
+
+    console.log("화살표3", state);
   };
 
   const arrowDown = () => {
