@@ -131,30 +131,54 @@ const Home = () => {
     const statesC = states.lg.find((item) => item.i === "c");
     const statesD = states.lg.find((item) => item.i === "d");
     const statesE = states.lg.find((item) => item.i === "e");
-    if (statesA.y === 2 && statesB.y === 0) {
+    if (statesA.y === 2 && statesB.y === 0 && statesD.y === 5) {
       statesA.y = 0;
       statesB.y = 3;
       statesC.y = 5;
       statesD.y = 5;
       statesE.y = 6;
-    } else if (statesA.y === 2 && statesB.y === 5) {
+    } else if (statesA.y === 2 && statesB.y === 0 && statesD.y === 6) {
+      statesA.y = 0;
+      statesB.y = 3;
+      statesC.y = 5;
+      statesD.y = 6;
+      statesE.y = 5;
+    } else if (statesA.y === 2 && statesB.y === 5 && statesD.y === 0) {
       statesA.y = 0;
       statesB.y = 5;
       statesC.y = 3;
       statesD.y = 3;
       statesE.y = 4;
-    } else if (statesA.y === 4 && statesB.y === 0) {
+    } else if (statesA.y === 2 && statesB.y === 5 && statesD.y === 1) {
+      statesA.y = 0;
+      statesB.y = 5;
+      statesC.y = 3;
+      statesD.y = 4;
+      statesE.y = 3;
+    } else if (statesA.y === 4 && statesB.y === 0 && statesD.y === 2) {
       statesA.y = 2;
       statesB.y = 0;
       statesC.y = 5;
       statesD.y = 5;
       statesE.y = 6;
-    } else if (statesA.y === 4 && statesB.y === 2) {
+    } else if (statesA.y === 4 && statesB.y === 0 && statesD.y === 3) {
+      statesA.y = 2;
+      statesB.y = 0;
+      statesC.y = 5;
+      statesD.y = 6;
+      statesE.y = 5;
+    } else if (statesA.y === 4 && statesB.y === 2 && statesD.y === 0) {
       statesA.y = 2;
       statesB.y = 5;
       statesC.y = 0;
       statesD.y = 0;
       statesE.y = 1;
+    } else if (statesA.y === 4 && statesB.y === 2 && statesD.y === 1) {
+      statesA.y = 2;
+      statesB.y = 5;
+      statesC.y = 0;
+      statesD.y = 1;
+      statesE.y = 0;
     } else alert("더이상 움직일 수 없습니다.");
 
     localStorage.setItem("state", JSON.stringify(states));
@@ -174,30 +198,54 @@ const Home = () => {
     const statesC = states.lg.find((item) => item.i === "c");
     const statesD = states.lg.find((item) => item.i === "d");
     const statesE = states.lg.find((item) => item.i === "e");
-    if (statesA.y === 0 && statesB.y === 3) {
+    if (statesA.y === 0 && statesB.y === 3 && statesD.y === 5) {
       statesA.y = 2;
       statesB.y = 0;
       statesC.y = 5;
       statesD.y = 5;
       statesE.y = 6;
-    } else if (statesA.y === 0 && statesB.y === 5) {
+    } else if (statesA.y === 0 && statesB.y === 3 && statesD.y === 6) {
+      statesA.y = 2;
+      statesB.y = 0;
+      statesC.y = 5;
+      statesD.y = 6;
+      statesE.y = 5;
+    } else if (statesA.y === 0 && statesB.y === 5 && statesD.y === 3) {
       statesA.y = 2;
       statesB.y = 5;
       statesC.y = 0;
       statesD.y = 0;
       statesE.y = 1;
-    } else if (statesA.y === 2 && statesB.y === 0) {
+    } else if (statesA.y === 0 && statesB.y === 5 && statesD.y === 4) {
+      statesA.y = 2;
+      statesB.y = 5;
+      statesC.y = 0;
+      statesD.y = 1;
+      statesE.y = 0;
+    } else if (statesA.y === 2 && statesB.y === 0 && statesD.y === 5) {
       statesA.y = 4;
       statesB.y = 0;
       statesC.y = 2;
       statesD.y = 2;
       statesE.y = 3;
-    } else if (statesA.y === 2 && statesB.y === 5) {
+    } else if (statesA.y === 2 && statesB.y === 0 && statesD.y === 6) {
+      statesA.y = 4;
+      statesB.y = 0;
+      statesC.y = 2;
+      statesD.y = 3;
+      statesE.y = 2;
+    } else if (statesA.y === 2 && statesB.y === 5 && statesD.y === 0) {
       statesA.y = 4;
       statesB.y = 2;
       statesC.y = 0;
       statesD.y = 0;
       statesE.y = 1;
+    } else if (statesA.y === 2 && statesB.y === 5 && statesD.y === 1) {
+      statesA.y = 4;
+      statesB.y = 2;
+      statesC.y = 0;
+      statesD.y = 1;
+      statesE.y = 0;
     } else alert("더이상 움직일 수 없습니다.");
 
     setState((state) => ({
@@ -215,30 +263,54 @@ const Home = () => {
     const statesC = states.lg.find((item) => item.i === "c");
     const statesD = states.lg.find((item) => item.i === "d");
     const statesE = states.lg.find((item) => item.i === "e");
-    if (statesB.y === 3) {
+    if (statesB.y === 3 && statesD.y === 5) {
       statesA.y = 2;
       statesB.y = 0;
       statesC.y = 5;
       statesD.y = 5;
       statesE.y = 6;
-    } else if (statesB.y === 5 && statesA.y === 0) {
+    } else if (statesB.y === 3 && statesD.y === 6) {
+      statesA.y = 2;
+      statesB.y = 0;
+      statesC.y = 5;
+      statesD.y = 6;
+      statesE.y = 5;
+    } else if (statesB.y === 5 && statesA.y === 0 && statesD.y === 3) {
       statesA.y = 0;
       statesB.y = 3;
       statesC.y = 5;
       statesD.y = 5;
       statesE.y = 6;
-    } else if (statesB.y === 5 && statesA.y === 2) {
+    } else if (statesB.y === 5 && statesA.y === 0 && statesD.y === 4) {
+      statesA.y = 0;
+      statesB.y = 3;
+      statesC.y = 5;
+      statesD.y = 6;
+      statesE.y = 5;
+    } else if (statesB.y === 5 && statesA.y === 2 && statesD.y === 0) {
       statesA.y = 4;
       statesB.y = 2;
       statesC.y = 0;
       statesD.y = 0;
       statesE.y = 1;
-    } else if (statesB.y === 2) {
+    } else if (statesB.y === 5 && statesA.y === 2 && statesD.y === 1) {
+      statesA.y = 4;
+      statesB.y = 2;
+      statesC.y = 0;
+      statesD.y = 1;
+      statesE.y = 0;
+    } else if (statesB.y === 2 && statesD.y === 0) {
       statesA.y = 4;
       statesB.y = 0;
       statesC.y = 2;
       statesD.y = 2;
       statesE.y = 3;
+    } else if (statesB.y === 2 && statesD.y === 1) {
+      statesA.y = 4;
+      statesB.y = 0;
+      statesC.y = 2;
+      statesD.y = 3;
+      statesE.y = 2;
     } else alert("더이상 움직일 수 없습니다.");
     setState((state) => ({
       ...state,
@@ -256,30 +328,54 @@ const Home = () => {
     const statesC = states.lg.find((item) => item.i === "c");
     const statesD = states.lg.find((item) => item.i === "d");
     const statesE = states.lg.find((item) => item.i === "e");
-    if (statesB.y === 0 && statesA.y === 2) {
+    if (statesB.y === 0 && statesA.y === 2 && statesD.y === 5) {
       statesA.y = 0;
       statesB.y = 3;
       statesC.y = 5;
       statesD.y = 5;
       statesE.y = 6;
-    } else if (statesB.y === 3) {
+    } else if (statesB.y === 0 && statesA.y === 2 && statesD.y === 6) {
+      statesA.y = 0;
+      statesB.y = 3;
+      statesC.y = 5;
+      statesD.y = 6;
+      statesE.y = 5;
+    } else if (statesB.y === 3 && statesD.y === 5) {
       statesA.y = 0;
       statesB.y = 5;
       statesC.y = 3;
       statesD.y = 3;
       statesE.y = 4;
-    } else if (statesB.y === 0 && statesA.y === 4) {
+    } else if (statesB.y === 3 && statesD.y === 6) {
+      statesA.y = 0;
+      statesB.y = 5;
+      statesC.y = 3;
+      statesD.y = 4;
+      statesE.y = 3;
+    } else if (statesB.y === 0 && statesA.y === 4 && statesD.y === 2) {
       statesA.y = 4;
       statesB.y = 2;
       statesC.y = 0;
       statesD.y = 0;
       statesE.y = 1;
-    } else if (statesB.y === 2) {
+    } else if (statesB.y === 0 && statesA.y === 4 && statesD.y === 3) {
+      statesA.y = 4;
+      statesB.y = 2;
+      statesC.y = 0;
+      statesD.y = 1;
+      statesE.y = 0;
+    } else if (statesB.y === 2 && statesD.y === 0) {
       statesA.y = 2;
       statesB.y = 5;
       statesC.y = 0;
       statesD.y = 0;
       statesE.y = 1;
+    } else if (statesB.y === 2 && statesD.y === 1) {
+      statesA.y = 2;
+      statesB.y = 5;
+      statesC.y = 0;
+      statesD.y = 1;
+      statesE.y = 0;
     } else alert("더이상 움직일 수 없습니다.");
     localStorage.setItem("state", JSON.stringify(states));
     states = localStorage.getItem("state");
