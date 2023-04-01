@@ -123,7 +123,7 @@ const Home = () => {
       ...state,
       layouts: states,
     }));
-  }, states);
+  }, []);
 
   const arrowUp = () => {
     const statesA = states.lg.find((item) => item.i === "a");
