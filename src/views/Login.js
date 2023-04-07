@@ -1,6 +1,7 @@
 // ** React Imports
 import { useSkin } from "@hooks/useSkin";
 import { Link } from "react-router-dom";
+import LoginForm from "./LoginForm";
 
 // ** Icons Imports
 import { Facebook, Twitter, Mail, GitHub } from "react-feather";
@@ -114,6 +115,8 @@ const Login = () => {
           lg="4"
           sm="12"
         >
+          <LoginForm />
+
           <Col className="px-xl-2 mx-auto" sm="8" md="6" lg="12">
             <CardTitle tag="h2" className="fw-bold mb-1">
               Welcome to Vuexy! 👋
