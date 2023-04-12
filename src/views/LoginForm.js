@@ -1,44 +1,85 @@
-import React, { useState } from "react";
+import { useContext, useState } from "react";
 import axios from "axios";
+function LoginForm() {
+  const [formData, setFormData] = useState({
+    ids: "",
+    subs: "",
+    passwd: "",
+  });
 
-const LoginForm = () => {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+  const handleChange = (e) => {
+    setFormData({
+      ...formData,
+      [e.target.name]: e.target.value,
+    });
+  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+
     try {
       const response = await axios.post(
-        "api/signin/",
+        "/api/signin/",
         {
-          email,
-          password,
+          ids: formData.ids,
+          subs: formData.subs,
+          passwd: formData.passwd,
         },
-        { withCredentials: true }
+        {
+          headers: {
+            "Content-Type": "application/x-www-form-urlencoded",
+          },
+        }
       );
-      console.log(response.data);
+
+      if (response.data.result_code === 1) {
+        console.log(response.data.results);
+        window.location.href = "/home";
+      } else {
+        console.log(response.data.results);
+        alert(response.data.results);
+      }
     } catch (error) {
       console.log(error);
+      console.log("sadffdfdassdasdffdsaasd");
     }
   };
 
   return (
     <form onSubmit={handleSubmit}>
-      <input
-        type="email"
-        placeholder="Email"
-        value={email}
-        onChange={(e) => setEmail(e.target.value)}
-      />
-      <input
-        type="password"
-        placeholder="Password"
-        value={password}
-        onChange={(e) => setPassword(e.target.value)}
-      />
+      <label>
+        ID:
+        <input
+          type="text"
+          name="ids"
+          value={formData.ids}
+          onChange={handleChange}
+        />
+      </label>
+      <br />
+      <label>
+        UUID:
+        <input
+          type="text"
+          name="subs"
+          value={formData.subs}
+          onChange={handleChange}
+        />
+      </label>
+      <br />
+      <label>
+        Password:
+        <input
+          type="password"
+          name="passwd"
+          value={formData.passwd}
+          onChange={handleChange}
+        />
+      </label>
+      <br />
       <button type="submit">Login</button>
     </form>
   );
-};
+}
 
 export default LoginForm;

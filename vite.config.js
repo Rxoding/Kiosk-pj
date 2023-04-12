@@ -17,17 +17,13 @@ export default () => {
         "/api": {
           target: "http://meta-cycle.io:8000",
           changeOrigin: true,
-          secure: true,
-          headers: {
-            Referer: "http://localhost:3000",
-          },
+          secure: false,
+          pathRewrite: { "^/api": "/api" },
+          ws: true,
         },
       },
-      cors: {
-        origin: ["https://pixinvent.com/", "http://localhost:3000"],
-        methods: ["GET", "PATCH", "PUT", "POST", "DELETE", "OPTIONS"],
-        allowedHeaders: ["Content-Type", "Authorization", "X-Requested-With"],
-      },
+      cors: true,
+      allowedHosts: ["*"],
     },
     css: {
       preprocessorOptions: {
