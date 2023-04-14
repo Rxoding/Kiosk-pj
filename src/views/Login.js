@@ -1,5 +1,10 @@
 // ** React Imports
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { useEffect, useState } from "react";
+import axios from "axios";
+import { useDispatch } from "react-redux";
+import { setUserInfo } from "../redux/userSlice";
+import { useCookies } from "react-cookie";
 
 // ** Icons Imports
 import { Facebook, Twitter, Mail, GitHub } from "react-feather";
@@ -32,9 +37,8 @@ import withReactContent from "sweetalert2-react-content";
 const MySwal = withReactContent(Swal);
 
 // ====================================================================
-import { useContext, useState } from "react";
-import axios from "axios";
-const Basic = () => {
+
+const Login = () => {
   const handleError = () => {
     return MySwal.fire({
       title: "비밀번호나 이메일을 틀렸습니다.",
@@ -46,28 +50,67 @@ const Basic = () => {
       buttonsStyling: false,
     });
   };
+
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
   const [formData, setFormData] = useState({
     ids: "",
-    subs: "",
     passwd: "",
   });
-
+  const [rememberMe, setRememberMe] = useState(false);
+  const [cookies, setCookie, removeCookie] = useCookies(["user"]);
+  const [errors, setErrors] = useState(null);
+  // 자동 로그인 체크시 로그인 정보 바로 뜨게
+  useEffect(() => {
+    if (cookies.user) {
+      const { ids, passwd } = cookies.user;
+      setFormData({ ids, passwd });
+      setRememberMe(true);
+    }
+  }, [cookies]);
   const handleChange = (e) => {
     setFormData({
       ...formData,
       [e.target.name]: e.target.value,
     });
+
+    // 유효성 검증
+    if (e.target.name === "ids" && e.target.value === "") {
+      setErrors({
+        ...errors,
+        ids: "아이디를 입력해주세요.",
+      });
+    } else {
+      setErrors({
+        ...errors,
+        ids: null,
+      });
+    }
+    if (e.target.name === "passwd" && e.target.value === "") {
+      setErrors({
+        ...errors,
+        passwd: "비밀번호를 입력해주세요.",
+      });
+    } else {
+      setErrors({
+        ...errors,
+        passwd: null,
+      });
+    }
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+
+    // 임시 고정 UUID
+    const subs = "118413609210214538557";
 
     try {
       const response = await axios.post(
         "/api/signin/",
         {
           ids: formData.ids,
-          subs: formData.subs,
+          subs: subs,
           passwd: formData.passwd,
         },
         {
@@ -79,16 +122,57 @@ const Basic = () => {
 
       if (response.data.result_code === 1) {
         console.log(response.data.results);
-        window.location.href = "/home";
+        dispatch(setUserInfo({ ids: formData.ids, subs: subs })); // 액션 디스패치
+
+        // 세션 스토리지에 사용자 정보 저장
+        const memberRes = await axios.post(
+          "/api/member/",
+          {
+            ids: formData.ids,
+            subs: subs,
+            method: "INFO",
+          },
+          {
+            headers: {
+              "Content-Type": "application/x-www-form-urlencoded",
+            },
+          }
+        );
+
+        if (memberRes.data.result_code === 1) {
+          sessionStorage.setItem(
+            "user",
+            JSON.stringify(memberRes.data.results)
+          );
+          // 기억하기 옵션 처리
+          if (rememberMe) {
+            setCookie(
+              "user",
+              { ids: formData.ids, passwd: formData.passwd },
+              { path: "/" }
+            );
+          } else {
+            removeCookie("user");
+          }
+          navigate("/home"); //로그인 성공 시 /home로 이동
+        } else {
+          console.log(memberRes.data.results);
+          alert("로그인 실패");
+        }
       } else {
         console.log(response.data.results);
-        handleError;
         alert(response.data.results);
       }
     } catch (error) {
       console.log(error);
-      console.log("sadffdfdassdasdffdsaasd");
-      handleError();
+      if (error) {
+        if (error.response.status === 400) {
+          // 잘못된 입력값 에러 처리
+          handleError();
+        } else {
+          // 기타 에러 처리
+        }
+      }
     }
   };
   //==================================================================
@@ -122,20 +206,7 @@ const Basic = () => {
                   onChange={handleChange}
                 />
               </div>
-              <div className="mb-1">
-                <div className="d-flex justify-content-between">
-                  <Label className="form-label" for="-password">
-                    UUID
-                  </Label>
-                </div>
-                <Input
-                  type="number"
-                  name="subs"
-                  value={formData.subs}
-                  onChange={handleChange}
-                  placeholder="123456789"
-                />
-              </div>
+
               <div className="mb-1">
                 <div className="d-flex justify-content-between">
                   <Label className="form-label" for="-password">
@@ -155,7 +226,12 @@ const Basic = () => {
               </div>
 
               <div className="form-check mb-1">
-                <Input type="checkbox" id="remember-me" />
+                <Input
+                  type="checkbox"
+                  id="rememberMe"
+                  checked={rememberMe}
+                  onChange={(e) => setRememberMe(e.target.checked)}
+                />
                 <Label className="form-check-label" for="remember-me">
                   로그인정보 기억하기
                 </Label>
@@ -194,4 +270,4 @@ const Basic = () => {
   );
 };
 
-export default Basic;
+export default Login;

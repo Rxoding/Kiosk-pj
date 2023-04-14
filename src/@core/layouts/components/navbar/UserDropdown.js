@@ -1,5 +1,7 @@
 // ** React Imports
-import { Link } from "react-router-dom";
+import { Link, json } from "react-router-dom";
+import { useSelector } from "react-redux";
+import { useCookies } from "react-cookie";
 
 import React, { useState } from "react";
 
@@ -34,8 +36,17 @@ const UserDropdown = () => {
   const onClick = () => {
     setEditBtn((current) => !current);
   };
+  const logout = () => {
+    sessionStorage.removeItem("user");
+  };
   localStorage.setItem("edit", EditBtn);
-  // console.log(EditBtn);
+  const user = JSON.parse(sessionStorage.getItem("user"));
+  if (!user) {
+    // 세션 스토리지에 값이 없는 경우
+    return null; // 렌더링하지 않음
+  }
+  const name = user[0].names;
+  const nickname = user[0].nicknames;
   return (
     <UncontrolledDropdown tag="li" className="dropdown-user nav-item">
       <DropdownToggle
@@ -45,8 +56,8 @@ const UserDropdown = () => {
         onClick={(e) => e.preventDefault()}
       >
         <div className="user-nav d-sm-flex d-none">
-          <span className="user-name fw-bold">John Doe</span>
-          <span className="user-status">Admin</span>
+          <span className="user-name fw-bold">{name}</span>
+          <span className="user-status">{nickname}</span>
         </div>
         <Avatar
           img={defaultAvatar}
@@ -60,34 +71,15 @@ const UserDropdown = () => {
           <User size={14} className="me-75" />
           <span className="align-middle">Profile</span>
         </DropdownItem>
-        {/* <DropdownItem tag={Link} to="/" onClick={(e) => e.preventDefault()}>
-          <Mail size={14} className="me-75" />
-          <span className="align-middle">Inbox</span>
-        </DropdownItem> */}
-        {/* <DropdownItem tag={Link} to="/" onClick={(e) => e.preventDefault()}>
-          <CheckSquare size={14} className="me-75" />
-          <span className="align-middle">Tasks</span>
-        </DropdownItem> */}
-        {/* <DropdownItem tag={Link} to="/" onClick={(e) => e.preventDefault()}>
-          <MessageSquare size={14} className="me-75" />
-          <span className="align-middle">Chats</span>
-        </DropdownItem> */}
-        {/* <DropdownItem divider /> */}
+
         <DropdownItem tag={Link} to="/home" onClick={onClick}>
           <Settings size={14} className="me-75" />
           <span className="align-middle">
             {EditBtn ? "저장하기" : "수정하기"}
           </span>
         </DropdownItem>
-        {/* <DropdownItem tag={Link} to="/" onClick={(e) => e.preventDefault()}>
-          <CreditCard size={14} className="me-75" />
-          <span className="align-middle">Pricing</span>
-        </DropdownItem>
-        <DropdownItem tag={Link} to="/" onClick={(e) => e.preventDefault()}>
-          <HelpCircle size={14} className="me-75" />
-          <span className="align-middle">FAQ</span>
-        </DropdownItem> */}
-        <DropdownItem tag={Link} to="/login">
+
+        <DropdownItem tag={Link} to="/login" onClick={logout}>
           <Power size={14} className="me-75" />
           <span className="align-middle">Logout</span>
         </DropdownItem>
